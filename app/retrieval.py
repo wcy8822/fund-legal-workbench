@@ -164,7 +164,9 @@ def _local_results(conn, pid, query, include_history):
             newer = conn.execute("SELECT id FROM issues WHERE project_id=? AND root_id=? ORDER BY created_at DESC,id DESC LIMIT 1", (pid, item["root_id"])).fetchone()
             if newer["id"] != item["id"]:
                 continue
-        text = "\n".join(item[k] for k in ("risk", "suggestion", "pending", "quote", "basis_note", "resolution_note"))
+        text = "\n".join(item[k] for k in (
+            "clause", "risk", "suggestion", "pending", "quote", "basis_quote", "basis_note", "resolution_note",
+        ))
         excerpt = _excerpt(text, terms)
         if excerpt is not None:
             matches.append({"id": "issue:" + item["id"], "title": item["risk"], "kind": "review_issue",
