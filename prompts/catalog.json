@@ -1,0 +1,359 @@
+{
+  "version": "0.3.0-draft",
+  "status": "partial_implementation_unverified",
+  "runtime_integration": true,
+  "external_model_calls": false,
+  "shared_template": "shared.md",
+  "description": "工作动作定义及实现状态。当前仅意见改写的专用流程读取其提示词；本目录不是驱动全部界面的通用执行器。本轮未运行验证。",
+  "common_context": [
+    "action_and_prompt_version",
+    "project_id",
+    "jurisdiction_and_as_of",
+    "selected_version_ids_and_sha256",
+    "confirmed_facts_with_sources",
+    "applicable_confirmed_playbooks",
+    "source_snapshots",
+    "extraction_warnings",
+    "unknowns",
+    "data_handling_scope"
+  ],
+  "result_defaults": {
+    "state": "draft",
+    "human_acceptance_required": true,
+    "preserve_originals": true
+  },
+  "forbidden_automatic_actions": [
+    "close_issue",
+    "approve_deliverable",
+    "accept_risk_exception",
+    "publish_company_policy",
+    "send_document",
+    "overwrite_original"
+  ],
+  "actions": [
+    {
+      "id": "contract_review",
+      "label": "审一下这份合同",
+      "entry": "contracts",
+      "template": "01-contract-review.md",
+      "priority": "first",
+      "user_inputs": [
+        {
+          "key": "our_role",
+          "label": "我方身份（已有信息预填）",
+          "required": true
+        },
+        {
+          "key": "contract_type",
+          "label": "交易或合同类型（已有信息预填）",
+          "required": true
+        },
+        {
+          "key": "focus",
+          "label": "本轮重点",
+          "required": false
+        }
+      ],
+      "automatic_context": [
+        "selected_version_text",
+        "existing_contract_issues",
+        "related_material_inventory"
+      ],
+      "output_kind": "review_issue_drafts",
+      "human_adoption": "法务采纳后新增审核意见；不关闭旧意见",
+      "status": "design_draft",
+      "runtime_loaded": false
+    },
+    {
+      "id": "counterparty_review",
+      "label": "看对方这次改了什么",
+      "entry": "contracts",
+      "template": "02-counterparty-review.md",
+      "priority": "first",
+      "user_inputs": [
+        {
+          "key": "baseline_version_id",
+          "label": "比较基准",
+          "required": true
+        },
+        {
+          "key": "incoming_version_id",
+          "label": "本次来稿",
+          "required": true
+        },
+        {
+          "key": "negotiation_focus",
+          "label": "本轮谈判重点",
+          "required": false
+        }
+      ],
+      "automatic_context": [
+        "two_version_text_diff",
+        "related_clause_context",
+        "all_contract_unresolved_issue_roots",
+        "confirmed_negotiation_positions"
+      ],
+      "output_kind": "change_and_issue_followup_draft",
+      "human_adoption": "法务确认复核建议；关闭问题另走已有人工流程",
+      "status": "design_draft",
+      "runtime_loaded": false
+    },
+    {
+      "id": "opinion_rewrite",
+      "label": "改写这条意见",
+      "entry": "issues",
+      "template": "03-opinion-rewrite.md",
+      "priority": "first",
+      "user_inputs": [
+        {
+          "key": "audience",
+          "label": "给谁看",
+          "required": true,
+          "options": [
+            "内部法务",
+            "业务沟通",
+            "对方批注",
+            "对照"
+          ]
+        },
+        {
+          "key": "tone",
+          "label": "表达语气",
+          "required": true,
+          "options": [
+            "简洁",
+            "温和",
+            "坚定"
+          ]
+        }
+      ],
+      "automatic_context": [
+        "selected_issue_id_as_issue_id",
+        "original_issue_and_revision",
+        "origin_and_current_clause",
+        "confirmed_substantive_position",
+        "pending_facts"
+      ],
+      "output_kind": "opinion_revision_draft",
+      "human_adoption": "确认意思变化后保存意见修订；保留原文和原状态",
+      "status": "implementation_written_unverified",
+      "runtime_loaded": true,
+      "implementation_note": "专用意见改写流程读取 shared.md 与本模板；每次选择单个用途。对照三版仍是后续设计。未接外部模型，本轮未执行验证。"
+    },
+    {
+      "id": "approval_material",
+      "label": "准备审批材料",
+      "entry": "deliverables",
+      "template": "04-approval-material.md",
+      "priority": "first",
+      "user_inputs": [
+        {
+          "key": "approval_type",
+          "label": "审批材料用途",
+          "required": true,
+          "options": [
+            "谈判稿对外放行",
+            "风险例外请示",
+            "签署前准备",
+            "投资审批法务材料"
+          ]
+        },
+        {
+          "key": "decision_requested",
+          "label": "这次请决定什么",
+          "required": true
+        },
+        {
+          "key": "business_reason",
+          "label": "业务理由或特别说明",
+          "required": false
+        }
+      ],
+      "automatic_context": [
+        "selected_artifact_and_source_version",
+        "material_changes",
+        "all_contract_unresolved_issue_roots",
+        "material_inventory",
+        "existing_approval_records",
+        "provided_authority_matrix"
+      ],
+      "output_kind": "internal_approval_memo_draft",
+      "human_adoption": "法务采纳后保存内部材料；不形成公司审批或文件放行",
+      "status": "design_draft",
+      "runtime_loaded": false
+    },
+    {
+      "id": "material_intake",
+      "label": "看看材料还缺什么",
+      "entry": "contracts",
+      "template": "05-material-intake.md",
+      "priority": "later",
+      "user_inputs": [
+        {
+          "key": "transaction_stage",
+          "label": "交易阶段",
+          "required": true
+        },
+        {
+          "key": "required_materials_basis",
+          "label": "材料要求来源",
+          "required": false
+        }
+      ],
+      "automatic_context": [
+        "project_file_inventory",
+        "extraction_status",
+        "referenced_attachments",
+        "provided_material_requirements"
+      ],
+      "output_kind": "material_gap_draft",
+      "human_adoption": "法务确认材料状态及判断依据",
+      "status": "design_draft",
+      "runtime_loaded": false
+    },
+    {
+      "id": "clause_draft",
+      "label": "给我一版最小修改条款",
+      "entry": "issues",
+      "template": "06-clause-draft.md",
+      "priority": "later",
+      "user_inputs": [
+        {
+          "key": "change_goal",
+          "label": "本次希望调整什么",
+          "required": true
+        }
+      ],
+      "automatic_context": [
+        "selected_clause_id_as_clause_id",
+        "selected_clause_text",
+        "related_definitions_and_references",
+        "confirmed_playbook_language",
+        "issue_and_basis"
+      ],
+      "output_kind": "clause_text_draft",
+      "human_adoption": "法务在Word采用文字并上传新版本；工作台不直接修改原件",
+      "status": "design_draft",
+      "runtime_loaded": false
+    },
+    {
+      "id": "cross_document",
+      "label": "核对几份文件的一致性",
+      "entry": "contracts",
+      "template": "07-cross-document.md",
+      "priority": "later",
+      "user_inputs": [
+        {
+          "key": "document_version_set",
+          "label": "文件与准确版本",
+          "required": true
+        },
+        {
+          "key": "comparison_focus",
+          "label": "核对重点",
+          "required": false
+        }
+      ],
+      "automatic_context": [
+        "selected_documents_text",
+        "provided_document_precedence",
+        "material_inventory"
+      ],
+      "output_kind": "cross_document_matrix_draft",
+      "human_adoption": "法务判定是否矛盾并采纳为意见",
+      "status": "design_draft",
+      "runtime_loaded": false
+    },
+    {
+      "id": "legal_question",
+      "label": "查依据：项目资料与公开法源",
+      "entry": "sources",
+      "template": "08-legal-question.md",
+      "priority": "later",
+      "user_inputs": [
+        {
+          "key": "legal_issue",
+          "label": "需要核对的法律问题",
+          "required": true
+        },
+        {
+          "key": "jurisdiction",
+          "label": "法域（项目预填）",
+          "required": true
+        },
+        {
+          "key": "as_of",
+          "label": "判断时点（项目预填）",
+          "required": true
+        }
+      ],
+      "automatic_context": [
+        "internal_fact_mapping",
+        "provided_legal_sources_and_verification_status",
+        "approved_search_service_availability"
+      ],
+      "output_kind": "deidentified_query_and_source_check_draft",
+      "human_adoption": "独立确认可外发问题；准确原文与判断时点经人工核对后追加来源记录",
+      "status": "partial_implementation_written_unverified",
+      "runtime_loaded": false,
+      "implementation_note": "V0.3实现本项目关键词搜索、人工公开问题准备、可选Tavily候选搜索及人工来源登记；本模板未接模型执行，未自动脱敏/抓取原文/核验效力，接口未运行验证。"
+    },
+    {
+      "id": "release_check",
+      "label": "出稿前还差什么",
+      "entry": "deliverables",
+      "template": "09-release-check.md",
+      "priority": "later",
+      "user_inputs": [
+        {
+          "key": "release_purpose",
+          "label": "稿件用途",
+          "required": true,
+          "options": [
+            "继续谈判",
+            "签署前准备"
+          ]
+        }
+      ],
+      "automatic_context": [
+        "selected_deliverable_id_as_deliverable_id",
+        "artifact_sha256",
+        "source_version",
+        "actual_structure_check_results",
+        "human_inspection_records",
+        "all_contract_unresolved_issue_roots",
+        "current_approval_state"
+      ],
+      "output_kind": "release_checklist_draft",
+      "human_adoption": "人工核对后另行操作文件放行；清单本身不是批准",
+      "status": "design_draft",
+      "runtime_loaded": false
+    },
+    {
+      "id": "knowledge_candidate",
+      "label": "留作下次参考",
+      "entry": "issues",
+      "template": "10-knowledge-candidate.md",
+      "priority": "later",
+      "user_inputs": [
+        {
+          "key": "approved_work_product",
+          "label": "选择已确认且允许复用的成果",
+          "required": true
+        }
+      ],
+      "automatic_context": [
+        "confirmed_work_product_provenance",
+        "before_and_after_text",
+        "applicability",
+        "reuse_authorization",
+        "exception_context"
+      ],
+      "output_kind": "unapproved_playbook_candidates",
+      "human_adoption": "有权角色确认适用范围后才能启用；本轮仅候选",
+      "status": "design_draft",
+      "runtime_loaded": false
+    }
+  ],
+  "catalog_drives_ui": false
+}

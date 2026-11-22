@@ -1,0 +1,60 @@
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+  from starlette.testclient import TestClient as TestClient  # noqa
+test_all_fictional_versions_round_trip (test_documents.DocumentTests.test_all_fictional_versions_round_trip) ... ok
+test_bad_docx_and_xml_entities_rejected (test_documents.DocumentTests.test_bad_docx_and_xml_entities_rejected) ... ok
+test_clean_snapshot_does_not_copy_comments_or_author (test_documents.DocumentTests.test_clean_snapshot_does_not_copy_comments_or_author) ... ok
+test_comments_and_personal_metadata_are_flagged (test_documents.DocumentTests.test_comments_and_personal_metadata_are_flagged) ... ok
+test_docx_preserves_prefix_bindings_and_removes_title_border (test_documents.DocumentTests.test_docx_preserves_prefix_bindings_and_removes_title_border) ... ok
+test_docx_still_opens_as_word_document (test_documents.DocumentTests.test_docx_still_opens_as_word_document) ... ok
+test_duplicate_zip_entries_rejected (test_documents.DocumentTests.test_duplicate_zip_entries_rejected) ... ok
+test_encrypted_pdf_and_fake_pdf_rejected (test_documents.DocumentTests.test_encrypted_pdf_and_fake_pdf_rejected) ... ok
+test_export_rejects_empty_text_and_unknown_format (test_documents.DocumentTests.test_export_rejects_empty_text_and_unknown_format) ... ok
+test_external_relationship_and_embedding_are_detected_without_fetching (test_documents.DocumentTests.test_external_relationship_and_embedding_are_detected_without_fetching) ... ok
+test_hidden_text_not_in_reading_view (test_documents.DocumentTests.test_hidden_text_not_in_reading_view) ... ok
+test_high_compression_ratio_rejected (test_documents.DocumentTests.test_high_compression_ratio_rejected) ... ok
+test_markdown_encoding_and_hidden_comments (test_documents.DocumentTests.test_markdown_encoding_and_hidden_comments) ... ok
+test_mixed_pdf_retains_ocr_warning_for_scanned_page (test_documents.DocumentTests.test_mixed_pdf_retains_ocr_warning_for_scanned_page) ... ok
+test_pdf_javascript_is_detected_and_not_executed (test_documents.DocumentTests.test_pdf_javascript_is_detected_and_not_executed) ... /workspace/scratch/440f703eca78/fund-legal-workbench/tests/test_documents.py:185: DeprecationWarning: add_js is deprecated and will be removed in pypdf 7.0.0. Use add_open_action instead.
+  writer.add_js("app.alert('DO NOT EXECUTE')")
+ok
+test_revision_changes_only_deadline (test_documents.DocumentTests.test_revision_changes_only_deadline) ... ok
+test_samples_are_byte_deterministic_across_calls (test_documents.DocumentTests.test_samples_are_byte_deterministic_across_calls) ... ok
+test_scan_is_marked_needs_ocr (test_documents.DocumentTests.test_scan_is_marked_needs_ocr) ... ok
+test_table_text_is_preserved_but_geometry_requires_review (test_documents.DocumentTests.test_table_text_is_preserved_but_geometry_requires_review) ... ok
+test_tracked_changes_are_detected_and_reading_view_is_explicit (test_documents.DocumentTests.test_tracked_changes_are_detected_and_reading_view_is_explicit) ... ok
+test_anonymity_and_private_mapping (test_model_eval.ModelEvalTests.test_anonymity_and_private_mapping) ... ok
+test_four_metrics_and_zero_denominator (test_model_eval.ModelEvalTests.test_four_metrics_and_zero_denominator) ... ok
+test_invalid_scores_and_accidental_overwrite_rejected (test_model_eval.ModelEvalTests.test_invalid_scores_and_accidental_overwrite_rejected) ... ok
+test_mismatched_input_and_tampering_rejected (test_model_eval.ModelEvalTests.test_mismatched_input_and_tampering_rejected) ... ok
+test_not_run_remains_unmeasured (test_model_eval.ModelEvalTests.test_not_run_remains_unmeasured) ... ok
+test_prepare_contains_three_versions_and_no_gold_answers (test_model_eval.ModelEvalTests.test_prepare_contains_three_versions_and_no_gold_answers) ... ok
+test_approval_requires_manual_note_and_explicit_open_issue_acceptance (test_workflow.WorkflowTests.test_approval_requires_manual_note_and_explicit_open_issue_acceptance) ... ok
+test_archive_restore_signed_original_and_no_hard_delete (test_workflow.WorkflowTests.test_archive_restore_signed_original_and_no_hard_delete) ... ok
+test_current_rollback_does_not_drop_open_review_roots (test_workflow.WorkflowTests.test_current_rollback_does_not_drop_open_review_roots) ... ok
+test_database_prevents_original_rewrite_and_audit_delete (test_workflow.WorkflowTests.test_database_prevents_original_rewrite_and_audit_delete) ... ok
+test_demo_uses_actual_deadline_in_modified_fictional_sample (test_workflow.WorkflowTests.test_demo_uses_actual_deadline_in_modified_fictional_sample) ... ok
+test_diff_shows_all_three_material_changes (test_workflow.WorkflowTests.test_diff_shows_all_three_material_changes) ... ok
+test_disabling_carry_cannot_bypass_open_issue_approval_gate (test_workflow.WorkflowTests.test_disabling_carry_cannot_bypass_open_issue_approval_gate) ... ok
+test_external_model_is_not_fabricated_and_search_does_not_send (test_workflow.WorkflowTests.test_external_model_is_not_fabricated_and_search_does_not_send) ... ok
+test_foreign_contract_comparison_rejected (test_workflow.WorkflowTests.test_foreign_contract_comparison_rejected) ... ok
+test_import_idempotency_replay_and_conflict (test_workflow.WorkflowTests.test_import_idempotency_replay_and_conflict) ... ok
+test_internal_checklist_and_clean_formats (test_workflow.WorkflowTests.test_internal_checklist_and_clean_formats) ... ok
+test_internal_document_never_exposed_by_external_interface (test_workflow.WorkflowTests.test_internal_document_never_exposed_by_external_interface) ... ok
+test_internal_review_package_preserves_exact_draft_without_approval (test_workflow.WorkflowTests.test_internal_review_package_preserves_exact_draft_without_approval) ... ok
+test_new_version_carries_three_issues_without_closure (test_workflow.WorkflowTests.test_new_version_carries_three_issues_without_closure) ... ok
+test_new_version_invalidates_old_approval (test_workflow.WorkflowTests.test_new_version_invalidates_old_approval) ... ok
+test_only_human_can_close_and_old_review_is_retained (test_workflow.WorkflowTests.test_only_human_can_close_and_old_review_is_retained) ... ok
+test_openapi_describes_three_scoped_company_operations (test_workflow.WorkflowTests.test_openapi_describes_three_scoped_company_operations) ... ok
+test_originals_preserved_after_multiple_versions (test_workflow.WorkflowTests.test_originals_preserved_after_multiple_versions) ... ok
+test_precise_legal_citation_and_contractual_basis (test_workflow.WorkflowTests.test_precise_legal_citation_and_contractual_basis) ... ok
+test_project_boundary_scope_and_disabled_integration (test_workflow.WorkflowTests.test_project_boundary_scope_and_disabled_integration) ... ok
+test_review_change_invalidates_approval (test_workflow.WorkflowTests.test_review_change_invalidates_approval) ... ok
+test_same_origin_and_host_guards (test_workflow.WorkflowTests.test_same_origin_and_host_guards) ... ok
+test_scan_is_archived_but_requires_ocr_before_diff_or_clean_export (test_workflow.WorkflowTests.test_scan_is_archived_but_requires_ocr_before_diff_or_clean_export) ... ok
+test_unapproved_delivery_is_blocked_locally_and_integration (test_workflow.WorkflowTests.test_unapproved_delivery_is_blocked_locally_and_integration) ... ok
+test_wrong_clause_or_fabricated_citation_rejected (test_workflow.WorkflowTests.test_wrong_clause_or_fabricated_citation_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 51 tests in 8.478s
+
+OK

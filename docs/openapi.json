@@ -1,0 +1,1854 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "私募基金投资法务工作台 · 本地演示",
+    "description": "只使用虚构资料。默认不接外部模型、法规检索或公司系统。",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/api/health": {
+      "get": {
+        "summary": "Health",
+        "operationId": "health_api_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/providers": {
+      "get": {
+        "summary": "Providers",
+        "operationId": "providers_api_providers_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/projects": {
+      "get": {
+        "summary": "List Projects",
+        "operationId": "list_projects_api_projects_get",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "",
+              "title": "Q"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create Project",
+        "operationId": "create_project_api_projects_post",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProjectInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/projects/{pid}": {
+      "get": {
+        "summary": "Get Project",
+        "operationId": "get_project_api_projects__pid__get",
+        "parameters": [
+          {
+            "name": "pid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Pid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/projects/{pid}/contracts": {
+      "post": {
+        "summary": "Create Contract",
+        "operationId": "create_contract_api_projects__pid__contracts_post",
+        "parameters": [
+          {
+            "name": "pid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Pid"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ContractInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/projects/{pid}/contracts/{cid}": {
+      "patch": {
+        "summary": "Update Contract",
+        "operationId": "update_contract_api_projects__pid__contracts__cid__patch",
+        "parameters": [
+          {
+            "name": "pid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Pid"
+            }
+          },
+          {
+            "name": "cid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Cid"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ContractPatch"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/projects/{pid}/contracts/{cid}/versions": {
+      "post": {
+        "summary": "Upload Version",
+        "operationId": "upload_version_api_projects__pid__contracts__cid__versions_post",
+        "parameters": [
+          {
+            "name": "pid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Pid"
+            }
+          },
+          {
+            "name": "cid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Cid"
+            }
+          },
+          {
+            "name": "idempotency-key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Idempotency-Key"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_upload_version_api_projects__pid__contracts__cid__versions_post"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/projects/{pid}/contracts/{cid}/current": {
+      "post": {
+        "summary": "Set Current",
+        "operationId": "set_current_api_projects__pid__contracts__cid__current_post",
+        "parameters": [
+          {
+            "name": "pid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Pid"
+            }
+          },
+          {
+            "name": "cid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Cid"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VersionPointer"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/projects/{pid}/versions/{vid}/original": {
+      "get": {
+        "summary": "Download Original",
+        "operationId": "download_original_api_projects__pid__versions__vid__original_get",
+        "parameters": [
+          {
+            "name": "pid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Pid"
+            }
+          },
+          {
+            "name": "vid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Vid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/projects/{pid}/diff": {
+      "get": {
+        "summary": "Diff",
+        "operationId": "diff_api_projects__pid__diff_get",
+        "parameters": [
+          {
+            "name": "pid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Pid"
+            }
+          },
+          {
+            "name": "left",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Left"
+            }
+          },
+          {
+            "name": "right",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Right"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/projects/{pid}/issues": {
+      "post": {
+        "summary": "Create Issue",
+        "operationId": "create_issue_api_projects__pid__issues_post",
+        "parameters": [
+          {
+            "name": "pid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Pid"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IssueInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/projects/{pid}/issues/{iid}": {
+      "patch": {
+        "summary": "Update Issue",
+        "operationId": "update_issue_api_projects__pid__issues__iid__patch",
+        "parameters": [
+          {
+            "name": "pid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Pid"
+            }
+          },
+          {
+            "name": "iid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Iid"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IssuePatch"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/projects/{pid}/contracts/{cid}/analyze": {
+      "post": {
+        "summary": "Analyze",
+        "operationId": "analyze_api_projects__pid__contracts__cid__analyze_post",
+        "parameters": [
+          {
+            "name": "pid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Pid"
+            }
+          },
+          {
+            "name": "cid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Cid"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AnalyzeInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/sources/official": {
+      "get": {
+        "summary": "Official Sources",
+        "operationId": "official_sources_api_sources_official_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/projects/{pid}/sources": {
+      "post": {
+        "summary": "Create Source",
+        "operationId": "create_source_api_projects__pid__sources_post",
+        "parameters": [
+          {
+            "name": "pid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Pid"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SourceInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/legal-search/prepare": {
+      "post": {
+        "summary": "Prepare Legal Search",
+        "operationId": "prepare_legal_search_api_legal_search_prepare_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchDraftInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/projects/{pid}/deliverables": {
+      "post": {
+        "summary": "Create Deliverable",
+        "operationId": "create_deliverable_api_projects__pid__deliverables_post",
+        "parameters": [
+          {
+            "name": "pid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Pid"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeliverableInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/projects/{pid}/deliverables/{did}/approve": {
+      "post": {
+        "summary": "Approve",
+        "operationId": "approve_api_projects__pid__deliverables__did__approve_post",
+        "parameters": [
+          {
+            "name": "pid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Pid"
+            }
+          },
+          {
+            "name": "did",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Did"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApproveInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/projects/{pid}/deliverables/{did}/preview": {
+      "get": {
+        "summary": "Preview Deliverable",
+        "operationId": "preview_deliverable_api_projects__pid__deliverables__did__preview_get",
+        "parameters": [
+          {
+            "name": "pid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Pid"
+            }
+          },
+          {
+            "name": "did",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Did"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/projects/{pid}/deliverables/{did}/review-copy": {
+      "get": {
+        "summary": "Internal Review Copy",
+        "description": "An explicitly internal review package, never a company delivery endpoint.",
+        "operationId": "internal_review_copy_api_projects__pid__deliverables__did__review_copy_get",
+        "parameters": [
+          {
+            "name": "pid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Pid"
+            }
+          },
+          {
+            "name": "did",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Did"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/projects/{pid}/deliverables/{did}/download": {
+      "get": {
+        "summary": "Download Deliverable",
+        "operationId": "download_deliverable_api_projects__pid__deliverables__did__download_get",
+        "parameters": [
+          {
+            "name": "pid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Pid"
+            }
+          },
+          {
+            "name": "did",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Did"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/integration/projects/{pid}/contracts": {
+      "get": {
+        "tags": [
+          "company-integration"
+        ],
+        "summary": "Integration Contracts",
+        "operationId": "integration_contracts_api_integration_projects__pid__contracts_get",
+        "parameters": [
+          {
+            "name": "pid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Pid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "未认证"
+          },
+          "403": {
+            "description": "项目/范围未授权或交付件未批准"
+          },
+          "409": {
+            "description": "幂等冲突或批准后内容发生变化"
+          },
+          "503": {
+            "description": "公司接口默认禁用"
+          }
+        },
+        "security": [
+          {
+            "ProjectBearer": []
+          }
+        ]
+      }
+    },
+    "/api/integration/projects/{pid}/contracts/{cid}/versions": {
+      "post": {
+        "tags": [
+          "company-integration"
+        ],
+        "summary": "Integration Import",
+        "operationId": "integration_import_api_integration_projects__pid__contracts__cid__versions_post",
+        "parameters": [
+          {
+            "name": "pid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Pid"
+            }
+          },
+          {
+            "name": "cid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Cid"
+            }
+          },
+          {
+            "name": "idempotency-key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "title": "Idempotency-Key"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_integration_import_api_integration_projects__pid__contracts__cid__versions_post"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "未认证"
+          },
+          "403": {
+            "description": "项目/范围未授权或交付件未批准"
+          },
+          "409": {
+            "description": "幂等冲突或批准后内容发生变化"
+          },
+          "503": {
+            "description": "公司接口默认禁用"
+          }
+        },
+        "security": [
+          {
+            "ProjectBearer": []
+          }
+        ]
+      }
+    },
+    "/api/integration/projects/{pid}/deliverables/{did}/download": {
+      "get": {
+        "tags": [
+          "company-integration"
+        ],
+        "summary": "Integration Download",
+        "operationId": "integration_download_api_integration_projects__pid__deliverables__did__download_get",
+        "parameters": [
+          {
+            "name": "pid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Pid"
+            }
+          },
+          {
+            "name": "did",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Did"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "未认证"
+          },
+          "403": {
+            "description": "项目/范围未授权或交付件未批准"
+          },
+          "409": {
+            "description": "幂等冲突或批准后内容发生变化"
+          },
+          "503": {
+            "description": "公司接口默认禁用"
+          }
+        },
+        "security": [
+          {
+            "ProjectBearer": []
+          }
+        ]
+      }
+    },
+    "/api/demo": {
+      "post": {
+        "summary": "Seed Demo",
+        "operationId": "seed_demo_api_demo_post",
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/projects/{pid}/contracts/{cid}/demo-version": {
+      "post": {
+        "summary": "Demo Version",
+        "operationId": "demo_version_api_projects__pid__contracts__cid__demo_version_post",
+        "parameters": [
+          {
+            "name": "pid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Pid"
+            }
+          },
+          {
+            "name": "cid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Cid"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DemoStage"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/demo/samples/{stage}.{fmt}": {
+      "get": {
+        "summary": "Sample",
+        "operationId": "sample_api_demo_samples__stage___fmt__get",
+        "parameters": [
+          {
+            "name": "stage",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Stage"
+            }
+          },
+          {
+            "name": "fmt",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Fmt"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AnalyzeInput": {
+        "properties": {
+          "version_id": {
+            "type": "string",
+            "title": "Version Id"
+          },
+          "provider": {
+            "type": "string",
+            "title": "Provider",
+            "default": "demo"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "version_id"
+        ],
+        "title": "AnalyzeInput"
+      },
+      "ApproveInput": {
+        "properties": {
+          "human_confirmed": {
+            "type": "boolean",
+            "title": "Human Confirmed",
+            "default": false
+          },
+          "review_note": {
+            "type": "string",
+            "maxLength": 4000,
+            "title": "Review Note",
+            "default": ""
+          },
+          "accept_open_issues": {
+            "type": "boolean",
+            "title": "Accept Open Issues",
+            "default": false
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "ApproveInput"
+      },
+      "Body_integration_import_api_integration_projects__pid__contracts__cid__versions_post": {
+        "properties": {
+          "file": {
+            "type": "string",
+            "contentMediaType": "application/octet-stream",
+            "title": "File"
+          },
+          "kind": {
+            "type": "string",
+            "title": "Kind",
+            "default": "revision"
+          },
+          "carry_issues": {
+            "type": "boolean",
+            "title": "Carry Issues",
+            "default": true
+          }
+        },
+        "type": "object",
+        "required": [
+          "file"
+        ],
+        "title": "Body_integration_import_api_integration_projects__pid__contracts__cid__versions_post"
+      },
+      "Body_upload_version_api_projects__pid__contracts__cid__versions_post": {
+        "properties": {
+          "file": {
+            "type": "string",
+            "contentMediaType": "application/octet-stream",
+            "title": "File"
+          },
+          "kind": {
+            "type": "string",
+            "title": "Kind",
+            "default": "revision"
+          },
+          "carry_issues": {
+            "type": "boolean",
+            "title": "Carry Issues",
+            "default": true
+          }
+        },
+        "type": "object",
+        "required": [
+          "file"
+        ],
+        "title": "Body_upload_version_api_projects__pid__contracts__cid__versions_post"
+      },
+      "ContractInput": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Title"
+          },
+          "counterparty": {
+            "type": "string",
+            "maxLength": 160,
+            "title": "Counterparty",
+            "default": ""
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "title"
+        ],
+        "title": "ContractInput"
+      },
+      "ContractPatch": {
+        "properties": {
+          "title": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 160,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Title"
+          },
+          "counterparty": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 160
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Counterparty"
+          },
+          "archived": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Archived"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "ContractPatch"
+      },
+      "DeliverableInput": {
+        "properties": {
+          "version_id": {
+            "type": "string",
+            "title": "Version Id"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "internal",
+              "external"
+            ],
+            "title": "Kind"
+          },
+          "format": {
+            "type": "string",
+            "enum": [
+              "docx",
+              "pdf",
+              "md"
+            ],
+            "title": "Format"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "version_id",
+          "kind",
+          "format"
+        ],
+        "title": "DeliverableInput"
+      },
+      "DemoStage": {
+        "properties": {
+          "stage": {
+            "type": "integer",
+            "enum": [
+              2,
+              3
+            ],
+            "title": "Stage"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "stage"
+        ],
+        "title": "DemoStage"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "IssueInput": {
+        "properties": {
+          "version_id": {
+            "type": "string",
+            "title": "Version Id"
+          },
+          "clause": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Clause"
+          },
+          "quote": {
+            "type": "string",
+            "maxLength": 20000,
+            "minLength": 1,
+            "title": "Quote"
+          },
+          "risk": {
+            "type": "string",
+            "maxLength": 4000,
+            "minLength": 1,
+            "title": "Risk"
+          },
+          "suggestion": {
+            "type": "string",
+            "maxLength": 6000,
+            "minLength": 1,
+            "title": "Suggestion"
+          },
+          "pending": {
+            "type": "string",
+            "maxLength": 4000,
+            "title": "Pending",
+            "default": ""
+          },
+          "basis_source_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Basis Source Id"
+          },
+          "basis_quote": {
+            "type": "string",
+            "maxLength": 10000,
+            "title": "Basis Quote",
+            "default": ""
+          },
+          "basis_note": {
+            "type": "string",
+            "maxLength": 4000,
+            "title": "Basis Note",
+            "default": ""
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "open",
+              "in_review"
+            ],
+            "title": "Status",
+            "default": "open"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "version_id",
+          "clause",
+          "quote",
+          "risk",
+          "suggestion"
+        ],
+        "title": "IssueInput"
+      },
+      "IssuePatch": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "open",
+              "in_review",
+              "resolved"
+            ],
+            "title": "Status"
+          },
+          "human_confirmed": {
+            "type": "boolean",
+            "title": "Human Confirmed",
+            "default": false
+          },
+          "resolution_note": {
+            "type": "string",
+            "maxLength": 4000,
+            "title": "Resolution Note",
+            "default": ""
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "status"
+        ],
+        "title": "IssuePatch"
+      },
+      "ProjectInput": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Name"
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 2000,
+            "title": "Description",
+            "default": ""
+          },
+          "jurisdiction": {
+            "type": "string",
+            "maxLength": 40,
+            "minLength": 2,
+            "title": "Jurisdiction",
+            "default": "CN"
+          },
+          "as_of": {
+            "type": "string",
+            "format": "date",
+            "title": "As Of",
+            "default": "2026-11-21"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "title": "ProjectInput"
+      },
+      "SearchDraftInput": {
+        "properties": {
+          "legal_question": {
+            "type": "string",
+            "maxLength": 600,
+            "minLength": 4,
+            "title": "Legal Question"
+          },
+          "deidentified_confirmed": {
+            "type": "boolean",
+            "title": "Deidentified Confirmed",
+            "default": false
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "legal_question"
+        ],
+        "title": "SearchDraftInput"
+      },
+      "SourceInput": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "maxLength": 300,
+            "minLength": 1,
+            "title": "Title"
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "law",
+              "judicial_interpretation",
+              "regulatory_rule",
+              "self_regulatory_rule",
+              "guiding_case",
+              "reference_case",
+              "judgment",
+              "other"
+            ],
+            "title": "Category",
+            "default": "law"
+          },
+          "jurisdiction": {
+            "type": "string",
+            "maxLength": 40,
+            "minLength": 2,
+            "title": "Jurisdiction",
+            "default": "CN"
+          },
+          "as_of": {
+            "type": "string",
+            "format": "date",
+            "title": "As Of",
+            "default": "2026-11-21"
+          },
+          "url": {
+            "type": "string",
+            "maxLength": 2000,
+            "minLength": 8,
+            "title": "Url"
+          },
+          "citation": {
+            "type": "string",
+            "maxLength": 10000,
+            "minLength": 1,
+            "title": "Citation"
+          },
+          "published_at": {
+            "type": "string",
+            "maxLength": 20,
+            "title": "Published At",
+            "default": ""
+          },
+          "effective_at": {
+            "type": "string",
+            "maxLength": 20,
+            "title": "Effective At",
+            "default": ""
+          },
+          "effect_status": {
+            "type": "string",
+            "maxLength": 160,
+            "title": "Effect Status",
+            "default": "待核验"
+          },
+          "verified_at": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Verified At",
+            "default": ""
+          },
+          "verification_note": {
+            "type": "string",
+            "maxLength": 2000,
+            "title": "Verification Note",
+            "default": "用户手工录入，未自动核验"
+          },
+          "is_demo": {
+            "type": "boolean",
+            "title": "Is Demo",
+            "default": false
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "title",
+          "url",
+          "citation"
+        ],
+        "title": "SourceInput"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      },
+      "VersionPointer": {
+        "properties": {
+          "version_id": {
+            "type": "string",
+            "title": "Version Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "version_id"
+        ],
+        "title": "VersionPointer"
+      }
+    },
+    "securitySchemes": {
+      "ProjectBearer": {
+        "type": "http",
+        "scheme": "bearer",
+        "description": "V0默认禁用。令牌限指定project_id与scope；正式试点需SSO/RBAC替换。"
+      }
+    }
+  }
+}

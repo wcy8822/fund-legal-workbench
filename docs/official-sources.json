@@ -1,0 +1,8 @@
+[
+  {"name":"国家法律法规数据库","url":"https://flk.npc.gov.cn/","categories":["law","administrative_regulation","judicial_interpretation"],"mode":"official_link","checked_on":"2026-11-21","note":"本次直接访问403；未核验供第三方使用的开放API或批量授权，不绕过限制。"},
+  {"name":"中国证监会法规体系查询","url":"https://neris.csrc.gov.cn/falvfagui/classifyController/indexJsp","categories":["regulatory_rule"],"mode":"official_link","checked_on":"2026-11-21","note":"官方入口已核验；动态正文、机器检索授权和更新SLA未验证。"},
+  {"name":"中国基金业法规库","url":"https://fg.amac.org.cn/","categories":["self_regulatory_rule","regulatory_rule"],"mode":"official_link","checked_on":"2026-11-21","note":"由基金业协会官网法规查询链接确认；未验证自动检索API。"},
+  {"name":"人民法院案例库","url":"https://rmfyalk.court.gov.cn/","categories":["guiding_case","reference_case"],"mode":"official_link","checked_on":"2026-11-21","note":"官方使用帮助与建设运行规程已核验；未验证登录后机器访问授权。"},
+  {"name":"中国裁判文书网","url":"https://wenshu.court.gov.cn/","categories":["judgment"],"mode":"official_link","checked_on":"2026-11-21","note":"首页已核验；公开裁判文书不等于完整案卷。未检索到不代表不存在。"},
+  {"name":"北大法宝 MCP（商业接口候选）","url":"https://mcp.pkulaw.com/","categories":["law","judgment"],"mode":"requires_authorization","checked_on":"2026-11-21","note":"官方目录确认有MCP/CLI与Bearer Token方案；本轮未调用，机构授权、限额、覆盖及更新SLA待验证。"}
+]

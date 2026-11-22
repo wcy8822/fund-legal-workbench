@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="按投资项目整理合同、版本、审核意见和交付物的本地演示工作台。">
+  <title>私募基金投资法务工作台</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#projects" aria-label="回到投资项目列表"><span class="brand-mark" aria-hidden="true">法</span><span>投资法务<span class="brand-sub">工作台</span></span></a>
+    <div class="top-meta"><span class="status-dot"></span>本地单人演示<span class="header-separator"></span><span>V0</span></div>
+  </header>
+  <div class="environment-note"><span class="eyebrow">DEMO WORKSPACE</span><span>仅使用虚构资料 · 未启用外部模型 · 对外文件须由法务批准</span></div>
+  <main id="app" tabindex="-1"><div class="loading"><span class="spinner"></span>正在打开工作台…</div></main>
+  <footer class="footer"><span>每次修改有来路，每次交付有确认。</span><span>合同原件保留 · AI 建议待复核 · 不自动发送</span></footer>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <dialog id="modal"><div id="modal-content"></div></dialog>
+  <script src="/static/app.js" defer></script>
+</body>
+</html>
