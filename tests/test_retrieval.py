@@ -139,6 +139,24 @@ class RetrievalWorkflowTests(_OfflineRetrievalCase):
         other_access = self.client.get(f"/api/projects/{other['project_id']}/research/runs/{current['id']}")
         self.assertEqual(other_access.status_code, 404)
 
+    def test_local_issue_search_matches_clause_number_and_exact_basis_quote(self):
+        v2 = self.stage(2)
+        source_id = next(source["id"] for source in self.detail()["sources"]
+                         if source["title"] == LEGAL_SOURCE["title"])
+        basis_quote = "当事人一方依法主张解除合同的，应当通知对方。"
+        response = self.client.post(f"{self.base}/issues", json={
+            "version_id": v2["id"], "clause": "8.2", "quote": "应送达管理人",
+            "risk": "收件授权待复核", "suggestion": "请核对授权文件",
+            "basis_source_id": source_id, "basis_quote": basis_quote,
+        })
+        self.assertEqual(response.status_code, 201, response.text)
+        issue_id = response.json()["id"]
+        for query in ("8.2", basis_quote):
+            with self.subTest(query=query):
+                hits = [hit for hit in self.local_run(query)["results"] if hit["kind"] == "review_issue"]
+                self.assertEqual([(hit["record_id"], hit["version_id"]) for hit in hits], [(issue_id, v2["id"])])
+                self.assertIn(query, hits[0]["excerpt"])
+
     def test_public_input_rejects_missing_confirmation_extra_text_and_known_identifiers(self):
         detail = self.detail()
         name = detail["contracts"][0]["counterparty"].replace("（虚构）", "")
