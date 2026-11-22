@@ -1,0 +1,53 @@
+{
+  "version": "0.2.0-draft",
+  "id": "demo-notice-recipient",
+  "title": "解除通知的收件主体（虚构标准卡草稿）",
+  "status": "illustrative_unapproved",
+  "is_company_policy": false,
+  "approved_by": null,
+  "approved_at": null,
+  "applicability": {
+    "jurisdiction": "中国大陆",
+    "as_of": "2026-11-21",
+    "contract_type": "虚构股权投资协议",
+    "our_role": "待具体项目确认",
+    "exclusions": [
+      "不可用于未经核验的其他法域或通知类型",
+      "不据此判断具体条款必然无效"
+    ]
+  },
+  "review_goal": "明确谁应收件、约定的方式和地址、代收授权及送达证据。",
+  "preferred_position": {
+    "status": "proposed_only",
+    "text": "核对解除通知送达合同相对方及约定收件地址的安排。"
+  },
+  "fallback_positions": [
+    {
+      "status": "proposed_only",
+      "text": "如约定由管理人代收，需核对适用法律、合同约定、代理或收件授权、送达方式与证据。",
+      "accepted_by_company": false
+    }
+  ],
+  "escalation_conditions": [
+    "对方将收件主体改为管理人但现有材料中未见授权",
+    "条款之间对收件主体或通知生效条件表述不一致",
+    "关键事实或法源适用时点尚未确认"
+  ],
+  "basis": [
+    {
+      "kind": "fictional_contract_difference",
+      "source": "V0.1虚构三版本投资协议第8.2条",
+      "note": "此卡展示设计结构，正式采用时需绑定实际版本ID与原文位置。合同差异本身不是公司政策或法律结论。"
+    },
+    {
+      "kind": "legal_verification_needed",
+      "source": null,
+      "note": "在法源记录中核对可适用的通知到达规则；本示例不新增或虚构法条引文。"
+    }
+  ],
+  "external_comment_candidate": "建议明确解除通知的收件主体、地址及生效方式；如由管理人代收，请补充相应授权或确认依据。",
+  "internal_note": "该条款的修订与付款期限是独立问题。付款期限恢复不能据此关闭本问题。公司接受条件与授权角色仍待指定。",
+  "approval_role": null,
+  "reuse_rule": "仅用于虚构演示；须有人确认来源、适用范围及批准权限后，才可另行发布为组织标准。",
+  "project_fact_warning": "样例中的10个工作日仅是该虚构初稿的商业条件，不能固化为公司付款标准。"
+}
