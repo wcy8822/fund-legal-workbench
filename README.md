@@ -8,26 +8,26 @@
 
 ## 当前交付状态
 
-V0.1 的代码、样例、调研与历史验收记录已保留；V0.2/V0.3 新增实现处于未验证开发状态。**2026-11-22 用户明确授权公开源码，[公开仓库](https://github.com/wcy8822/fund-legal-workbench)已创建，GitHub API 已确认可见性为 public 及当前账号的 push/admin 权限。完整代码推送、默认分支调整与 Draft PR 仍在进行，完成状态待据实补充。**仓库已创建不表示完整交付或应用验收已完成。
+V0.1 的代码、样例、调研与历史验收记录已保留；V0.2/V0.3 新增实现处于未验证开发状态。**2026-11-22 已完成[公开源码发布](https://github.com/wcy8822/fund-legal-workbench)、默认分支设置及匿名HTTPS克隆，并创建[Draft PR #1](https://github.com/wcy8822/fund-legal-workbench/pull/1)。PR 保持草稿、未合并；应用没有启动或重新测试。**首个完整源码提交为 `f8e28d342138899f8e3d95e052f0f30b33cfa8e1`，包含76个文件。
 
-2026-11-21 的历史阻塞是：目标仓库返回404、安装范围检索无结果，连接器没有建库工具，本机 `gh` 未登录，浏览器需要登录。本轮已确认浏览器登录账号为 `wcy8822`，据此继续公开发布；历史阻塞不再被当作永久权限结论。本地分支 `feat/v0.3-evidence-retrieval` 和 Git bundle 保留可接手结果，详见[公开发布说明](docs/PUBLIC-RELEASE.md)及[交接指令](docs/CODEX-HANDOFF.md)。
+2026-11-21 的历史阻塞是：目标仓库返回404、安装范围检索无结果，连接器没有建库工具，本机 `gh` 未登录，浏览器需要登录。这些是当时记录；2026-11-22已通过浏览器及GitHub接口完成公开交付。后续以GitHub当前默认分支为开发基线，旧ZIP、patch及Git bundle仅作历史备份，用户无需下载或转交。实际发布证据与接手方式见[公开发布说明](docs/PUBLIC-RELEASE.md)及[交接指令](docs/CODEX-HANDOFF.md)。
 
 仅适用于虚构数据的单人本机演示。公开网页搜索适配器默认关闭，可显式配置，但配置不代表已验证连通、配额或数据授权；没有外部模型、企业身份系统、真实公司接口或公网部署。
 
 ## 公开源码与匿名克隆
 
-公开发布完成后，其他电脑可通过 HTTPS 克隆源码，无需 GitHub 登录。计划将完整源码分支 `feat/v0.3-evidence-retrieval` 设为默认分支，避免普通克隆落到空 `main`；向 `main` 的 Draft PR 保持未合并。以下命令供发布完成后使用，当前不能作为已成功克隆的证明：
+其他电脑可通过 HTTPS 克隆源码，无需 GitHub 登录。默认分支已设为含完整源码的 `feat/v0.3-evidence-retrieval`；向 `main` 的 Draft PR 保持未合并。已在禁用凭据助手、HTTP额外头、全局Git配置和交互认证的独立临时目录中实际完成匿名浅克隆，分支、首个完整源码提交和文件树均一致。正常接手使用：
 
 ```bash
 git clone https://github.com/wcy8822/fund-legal-workbench.git
 cd fund-legal-workbench
 ```
 
-如需明确指定开发版，可使用 `git clone --branch feat/v0.3-evidence-retrieval --single-branch https://github.com/wcy8822/fund-legal-workbench.git`。开源许可以根目录 `LICENSE` 为准，发布时同步提供；第三方依赖和资料按各自许可使用。公开范围仅为代码、文档与虚构样例，应用继续只在本机运行。克隆不自动启动应用或恢复测试。
+如需明确指定开发版，可使用 `git clone --branch feat/v0.3-evidence-retrieval --single-branch https://github.com/wcy8822/fund-legal-workbench.git`。项目源码采用[MIT许可](LICENSE)；第三方依赖和资料按各自许可使用。公开范围仅为代码、文档与虚构样例，应用继续只在本机运行。克隆不自动启动应用或恢复测试；后续开发从实际取得的默认分支创建独立分支。
 
 ## 一条命令启动
 
-需要 Python 3.11+（V0.1 历史运行环境：Python 3.12.14），macOS / Linux 的 Bash。以下启动说明留给恢复运行安排后使用；本轮没有执行。解压交付包，进入 `fund-legal-workbench` 目录：
+需要 Python 3.11+（V0.1 历史运行环境：Python 3.12.14），macOS / Linux 的 Bash。以下启动说明留给恢复运行安排后使用；本轮没有执行。克隆仓库后进入 `fund-legal-workbench` 目录：
 
 ```bash
 bash start.sh
@@ -142,9 +142,9 @@ python -m scripts.model_eval score --review data/evaluation/round-1/review-templ
 ## 迭代日志
 
 - 来源：此前三稿闭环、意见改写、V0.3 检索实现，以及用户2026-11-22的公开源码授权。
-- 结论：V0.3 继续保留分范围检索与人工法源记录；源码公开发布进行中，运行验证继续暂缓。
-- 改动点：更新公开仓库授权、匿名克隆、默认分支及 Draft PR 安排；保留旧权限阻塞为历史事实。
-- 待补充：实际发布结果、默认分支、PR及许可文件；V0.2/V0.3运行结果、专业服务授权和公司资料范围。
-- 下一步建议：完成公开源码与可克隆分支交付；应用验证和专业法源接入按后续安排执行。
+- 结论：公开源码、默认分支、匿名克隆及Draft PR已完成；V0.2/V0.3运行验证继续暂缓。
+- 改动点：记录实际发布提交、匿名克隆证据与MIT许可；以GitHub默认分支承接，旧包仅作历史备份。
+- 待补充：V0.2/V0.3运行结果、专业服务授权和公司资料范围。
+- 下一步建议：其他电脑或AI直接克隆GitHub继续开发；应用验证和专业法源接入按后续安排执行。
 
 思维导图结构：投资项目 → 合同原件与版本 → 差异和未决意见 → 可追溯法源 → 内部审阅 → 人工批准 → 可下载交付件；外侧分别挂接模型、存储、公司接口的替换边界。
